@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>带框的拖拽</title>
+    <style>
+        #div1{
+            width:100px;
+            height:100px;
+            background:red;
+            position: absolute;
+        }
+
+        .box{
+            border:1px solid #000000;
+            position: absolute;
+        }
+
+    </style>
+
+    <script>
+
+        window.onload=function () {
+
+           var odiv  = document.getElementById('div1');
+
+            document.onmousedown=function (ev) {
+
+                var oEvent = ev.event ||event;
+                var disx = 0;
+                var disy = 0;
+
+                disx =oEvent.clientX -odiv.offsetLeft;
+                disy =oEvent.clientY -odiv.offsetTop;
+
+                //创建一个虚框div
+                var newdiv = document.createElement('div');
+                newdiv.className = 'box'
+                newdiv.style.width = odiv.offsetWidth + 'px';
+                newdiv.style.height = odiv.offsetHeight + 'px';
+//              减去border占的宽
+                newdiv.style.left = odiv.offsetLeft-2+ 'px';
+                newdiv.style.top = odiv.offsetTop-2+'px';
+
+
+                document.body.appendChild(newdiv);
+
+
+                document.onmousemove = function (ev) {
+                   var oEvent = ev.event ||event;
+                   var lx = oEvent.clientX - disx;
+                    var ly = oEvent.clientY - disy;
+                    if(lx < 10){
+                        lx= 0
+                    }else if(lx >(document.documentElement.clientWidth - odiv.offsetWidth)-10){
+                        lx =document.documentElement.clientWidth - odiv.offsetWidth;
+                    }
+
+                    if(ly < 10){
+                        ly= 0
+                    }else if(ly >(document.documentElement.clientHeight- odiv.offsetHeight)-10){
+                        ly =document.documentElement.clientHeight- odiv.offsetHeight
+                    }
+
+
+                    newdiv.style.left =  lx + 'px';
+                    newdiv.style.top = ly + 'px';
+
+                }
+
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmousemove = null;
+                    //document.releaseCapture()
+                    odiv.style.left = newdiv.offsetLeft + 'px';
+                    odiv.style.top= newdiv.offsetTop+'px'
+
+                    document.body.removeChild(newdiv)
+                }
+
+                //document.setCapture(); //只是对IE有效 点击哪都相当于点击按钮 解决文字选中的bug
+                return false;     //  取消默认事件
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+
+
+    <div id="div1"></div>
+
+</body>
+</html>

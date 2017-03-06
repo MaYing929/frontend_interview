@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浮动元素居中</title>
+    <style>
+
+        #div1{
+            width:100px; //2
+            height:100px;
+            background: green;
+            float: left;
+            position: relative; //1
+            left:50%; //3
+            margin-left: -50px; //4
+        }
+
+        #div2{
+            /*width:100px;*/
+            /*height:100px;*/
+            /*background: green;*/
+            /*position:absolute;*/
+            /*left:50%;*/
+            /*margin-left: -50px;*/
+
+
+            width:100px;
+            height:100px;
+            background: green;
+            position:absolute;
+            margin: 0 auto;
+            left:0;
+            right:0;
+        }
+    </style>
+</head>
+<body>
+<!--<div id="div1"></div>-->
+
+<div id="div2"></div>
+</body>
+</html>

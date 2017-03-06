@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件捕获</title>
+</head>
+<script>
+  window.onload=function () {
+      var obtn = document.getElementById('btn');
+      obtn.onclick=function () {
+          alert('ww')
+      }
+      obtn.setCapture(); //只是对IE有效 点击哪都相当于点击按钮
+  }
+</script>
+<body>
+<input type="button" id="btn">
+</body>
+</html>

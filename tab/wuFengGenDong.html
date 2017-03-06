@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS无缝滚动</title>
+    <style>
+        *{margin:0px;
+        padding:0px;}
+        img{width:150px;height:150px;}
+        #div1{
+            position: relative;
+            margin:100px auto;
+            width:600px;
+            height:150px;
+            background: red;
+            overflow: hidden;
+        }
+        ul{
+            position:absolute;
+            left:0;
+            top:0;
+
+        }
+
+        li{
+            float:left;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<button>向左走</button>
+<button>向右走</button>
+<div id="div1">
+
+    <ul>
+        <li><img src="imgs/1.jpeg" alt=""></li>
+        <li><img src="imgs/2.jpeg" alt=""></li>
+        <li><img src="imgs/3.jpeg" alt=""></li>
+        <li><img src="imgs/4.jpeg" alt=""></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    window.onload=function(){
+        var div1 = document.getElementById('div1');
+        var oul = div1.getElementsByTagName('ul')[0];
+        var oli = oul.getElementsByTagName('li');
+        var timer = null;
+
+         oul.innerHTML = oul.innerHTML +oul.innerHTML;
+         oul.style.width = oli[0].offsetWidth * oli.length + 'px';
+
+        var speed =-2;
+
+        function move(){
+
+            if(oul.offsetLeft < -oul.offsetWidth/2){
+                oul.style.left ='0';
+            }
+            if(oul.offsetLeft > 0){
+                oul.style.left = -oul.offsetWidth/2 + 'px'
+            }
+            oul.style.left = oul.offsetLeft +speed+ 'px';
+        }
+
+
+          timer = setInterval(move,30)
+
+        document.getElementsByTagName('Button')[0].onclick=function(){
+            speed = -2;
+        }
+        document.getElementsByTagName('Button')[1].onclick=function(){
+            speed = 2;
+        }
+
+        div1.onmouseover=function(){
+            clearInterval(timer)
+        }
+        div1.onmouseout=function(){
+            timer = setInterval(move,30)
+        }
+    }
+</script>
+</body>
+</html>

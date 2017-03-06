@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽 拖拽时选中文字的bug</title>
+    <style>
+        #div1{
+            width:100px;
+            height:100px;
+            background:red;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+
+        #div2{
+            width: 400px;
+            height:400px;
+            background: #cccccc;
+            position: relative;
+            left:200px;
+        }
+    </style>
+
+    <script>
+
+        window.onload=function () {
+
+           var odiv  = document.getElementById('div1');
+            var odiv2  = document.getElementById('div2');
+            document.onmousedown=function (ev) {
+
+                var oEvent = ev.event ||event;
+                var disx = 0;
+                var disy = 0;
+
+                disx =oEvent.clientX -odiv.offsetLeft;
+                disy =oEvent.clientY -odiv.offsetTop;
+
+                document.onmousemove = function (ev) {
+                    var oEvent = ev.event ||event;
+
+              var lx = oEvent.clientX - disx;
+                    var ly = oEvent.clientY - disy;
+                    if(lx < 10){
+                        lx= 0
+                    }else if(lx >(odiv2.offsetWidth - odiv.offsetWidth)-10){
+                        lx =odiv2.offsetWidth - odiv.offsetWidth;
+                    }
+
+                    if(ly < 10){
+                        ly= 0
+                    }else if(ly >(odiv2.offsetHeight- odiv.offsetHeight)-10){
+                        ly =odiv2.offsetHeight- odiv.offsetHeight
+                    }
+
+
+                    odiv.style.left =  lx + 'px';
+                    odiv.style.top = ly + 'px';
+
+                }
+
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmousemove = null;
+                    //document.releaseCapture()
+                }
+
+                //document.setCapture(); //只是对IE有效 点击哪都相当于点击按钮 解决文字选中的bug
+                return false;     //  取消默认事件
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<div id="div2">
+    但是你就是看你你几点思考
+    <div id="div1">蒙地卡罗模块了我你的实际困难</div>
+</div>
+</body>
+</html>

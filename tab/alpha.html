@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运动基础一</title>
+    <style>
+        *{
+             margin:0;
+             padding:0;
+         }
+       #div1{
+           width:150px;
+           height:200px;
+           background: red;
+           position: relative;
+           left: 0px;
+           top:100px;
+           opacity: 0.3;
+       }
+
+    </style>
+
+</head>
+<body>
+<div id="div1">
+</div>
+<script>
+    var odiv1 = document.getElementById('div1');
+    var timer = null;
+    var alpha =30;
+
+    function startMove(iTagget){
+//      先关闭定时器（保证同时段只有一个定时器）
+        clearInterval(timer);
+        timer = setInterval(function(){
+            var speed =0;
+            if(alpha <iTagget){
+                speed = 10;
+            }else{
+                speed = -10;
+            }
+            if(alpha == iTagget){
+                clearInterval(timer)
+            }else{
+                alpha+=speed;
+            }
+            //将透明度设置
+            odiv1.style.filter ='alpha(opacity:'+alpha+')'
+            console.log('odiv1.style.filter',odiv1.style.filter,odiv1.style.opacity)
+            odiv1.style.opacity = alpha/100;
+        },30)
+    }
+
+
+    window.onload=function(){
+
+        odiv1.onmouseover=function(){
+            startMove(100)
+        }
+        odiv1.onmouseout=function(){
+            startMove(30)
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>右侧悬浮框</title>
+    <style>
+        #div1{
+            width:200px;
+            height:200px;
+            background: red;
+            position: absolute;
+            right:0;
+            bottom:0;
+        }
+    </style>
+
+    <script>
+
+        var timer = null;
+        function startMove(itarget){
+            var div1 = document.getElementById('div1');
+            clearInterval(timer);
+            timer = setInterval(function(){
+                var speed  = (itarget -div1.offsetTop)/6;
+                speed = speed >0?Math.ceil(speed):Math.floor(speed);
+                if(div1.offsetTop == itarget){
+                    clearInterval(timer)
+                }else {
+                    div1.style.top = div1.offsetTop + speed + 'px';
+                }
+            },30)
+        }
+
+        window.onscroll =function(){
+            var div1 = document.getElementById('div1');
+            var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+//           div1.style.top = document.documentElement.clientHeight - div1.offsetHeight + scrollTop +'px';
+            startMove(parseInt((document.documentElement.clientHeight - div1.offsetHeight)/2 + scrollTop))
+        }
+
+
+
+    </script>
+</head>
+<body style="height: 2000px">
+<div id="div1"></div>
+</body>
+</html>
