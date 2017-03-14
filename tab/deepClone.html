@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>深克隆</title>
+</head>
+<body>
+<script>
+//    仅遍历父对象的成员并将其复制到子对象中去
+
+    function extend(parent,child) {
+        var i =0;
+//        如果不传入第二个参数就创建一个新的对象
+        child = child || {}
+//        遍历parent上所有的属性宾并且过滤原型上的属性//然后将自身属性复制到child对象上
+        for(i in parent){
+            if(parent.hasOwnProperty(i)){
+                child[i] = parent[i]
+            }
+        }
+
+        return child;
+    }
+
+    window.onload =function () {
+         var par  ={name:'maying'}
+         var v = extend(par)
+         console.log(v);
+    }
+
+//    存在问题
+//    这是浅复制 如果父对象的某一项为对象 因为引用的关系如果继承之后修改子元素的对应属性 那么父元素也会修改 没有达到目的
+
+</script>
+</body>
+</html>

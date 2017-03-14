@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>深克隆</title>
+</head>
+<body>
+<script>
+//    检查父亲对象的每一个元素，如果该对象也恰好是对象的话就递归复制出该对象的属性
+//还需要检查该项是不是一个数组，这是因为数组的字面量创建的形式与对象的字面量形式创建的形式不一样，前者是[] 后者是{}
+//检测数组可以使用Object.prototype.toString()方法进行检测，如果是数组的话，他会返回"[object Array]"
+
+    function deepClone(parent,child) {
+//        如果不传入第二个参数就创建一个新的对象
+        child = child || {}
+//        遍历parent上所有的属性宾并且过滤原型上的属性//然后将自身属性复制到child对象上
+        for(var i in parent){
+            if(parent.hasOwnProperty(i)){
+//                检测当前项是否为对象
+                if(typeof parent[i] == 'object'){
+//                    如果当前项为对象还要检测是否为数组
+                    child[i] = (Object.prototype.toString.call(parent[i]) === "[object Array]") ? [] : {};
+                    deepClone(parent[i], child[i]);
+                }else{
+                    child[i] = parent[i]
+                }
+            }
+        }
+        return child;
+    }
+
+    window.onload =function () {
+         var par  ={name:'maying',reads: {paper: true}}
+         var v = deepClone(par)
+         console.log(v.reads.paper);
+        v.reads.paper = false;
+        console.log('子',v.reads.paper);
+        console.log('父亲',par.reads.paper);
+
+    }
+
+//    存在问题
+//    这是浅复制 如果父对象的某一项为对象 因为引用的关系如果继承之后修改子元素的对应属性 那么父元素也会修改 没有达到目的
+    
+</script>
+</body>
+</html>

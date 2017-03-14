@@ -163,9 +163,67 @@ function myAddEvent(obj,ev,fn) {
         obj.addEventListener(ev,fn,false)
     }
 }
+// 深克隆
+function deepClone(parent,child) {
+//        如果不传入第二个参数就创建一个新的对象
+    child = child || {}
+//        遍历parent上所有的属性宾并且过滤原型上的属性//然后将自身属性复制到child对象上
+    for(var i in parent){
+        if(parent.hasOwnProperty(i)){
+//                检测当前项是否为对象
+            if(typeof parent[i] == 'object'){
+//                    如果当前项为对象还要检测是否为数组
+                child[i] = (Object.prototype.toString.call(parent[i]) === "[object Array]") ? [] : {};
+                deepClone(parent[i], child[i]);
+            }else{
+                child[i] = parent[i]
+            }
+        }
+    }
+    return child;
+}
 
-window.onload=function(){
-   var odiv1 = document.getElementById('odiv');
-    var  b = getStyle(odiv1,'height')
-    alert(b);
+<!--  深嵌套数组返回扁平化数组 [1,[2,[3,4],5],6] =>[1,2,3,4,5,6]-->
+function toSimpleArray(data,result) {
+    result = result || [];
+    for(var i =0;i<data.length;i++){
+        if(typeof  data[i] === 'number'){
+            result.push(data[i])
+        }else {
+            toSimpleArray(data[i],result)
+        }
+    }
+}
+
+// 判断一个对象是不是一个数组
+function isArray(obj) {
+    if(typeof  obj === 'object'){
+        return obj.prototype.toString().call(obj) === '[object Array]'
+    }
+    return false
+}
+
+// 数组去重
+function  toUnique(arr){
+    if(arr && Array.isArray(arr)){
+        var map = {}
+        for(var i = 0 ;i<arr.length;i++){
+            if(arr[i] in map){
+                arr.splice(i,1); //会直接对数组进行修改 slice（）不是
+                // slice() 方法可提取字符串的某个部分，并以新的字符串返回被提取的部分。
+                // split() 方法用于把一个字符串分割成字符串数组。
+            }else {
+                map[arr[i]] = true
+            }
+        }
+    }
+    return arr;
+}
+// 图片预加载
+function preLoadImg(url) {
+
+    var img = new Image();
+
+    img.src = url;
+
 }
