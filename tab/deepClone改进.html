@@ -6,7 +6,7 @@
 </head>
 <body>
 <script>
-//    检查父亲对象的每一个元素，如果该对象也恰好是对象的话就递归复制出该对象的属性
+//检查父亲对象的每一个元素，如果该对象也恰好是对象的话就递归复制出该对象的属性
 //还需要检查该项是不是一个数组，这是因为数组的字面量创建的形式与对象的字面量形式创建的形式不一样，前者是[] 后者是{}
 //检测数组可以使用Object.prototype.toString()方法进行检测，如果是数组的话，他会返回"[object Array]"
 
@@ -28,6 +28,7 @@
         }
         return child;
     }
+
 
     window.onload =function () {
          var par  ={name:'maying',reads: {paper: true}}

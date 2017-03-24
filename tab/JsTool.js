@@ -14,6 +14,7 @@ function getStyle(obj,name){
 
 
 
+
 // ------------------------------------
 // 获取非行间样式
 function getStyle(obj,name){
@@ -49,6 +50,7 @@ function startMove(obj,attr,itarget){
         }
     },30)
 }
+
 // ------------------------------------
 
 // ####################################################################################
@@ -64,6 +66,7 @@ function getStyle(obj,name){
     }
 }
 
+
 function startMove(obj,attr,itarget,fnEnd){
     clearInterval(obj.timer);
     obj.timer = setInterval(function(){
@@ -77,7 +80,7 @@ function startMove(obj,attr,itarget,fnEnd){
         speed = speed >0?Math.ceil(speed):Math.floor(speed);
         if(curr == itarget){
             clearInterval(obj.timer)
-//                    程序结束时只有当传进来函数的时候才会去执行
+//           程序结束时只有当传进来函数的时候才会去执行
             if(fnEnd)fnEnd();
         }else {
             if(attr == 'opacity'){
@@ -85,7 +88,6 @@ function startMove(obj,attr,itarget,fnEnd){
                 obj.style.opacity = (curr + speed)/100;
             }else{
                 obj.style[attr]=curr + speed + 'px';
-
             }
         }
     },30)
@@ -161,6 +163,7 @@ function myAddEvent(obj,ev,fn) {
         obj.attachEvent('on'+ ev ,fn)
     }else{
         obj.addEventListener(ev,fn,false)
+
     }
 }
 // 深克隆
@@ -183,6 +186,8 @@ function deepClone(parent,child) {
     return child;
 }
 
+
+
 <!--  深嵌套数组返回扁平化数组 [1,[2,[3,4],5],6] =>[1,2,3,4,5,6]-->
 function toSimpleArray(data,result) {
     result = result || [];
@@ -195,13 +200,19 @@ function toSimpleArray(data,result) {
     }
 }
 
+
+
 // 判断一个对象是不是一个数组
 function isArray(obj) {
+    // 先判断是不是一个对象
     if(typeof  obj === 'object'){
+        // 在判断是不是是不是一个数组
         return obj.prototype.toString().call(obj) === '[object Array]'
     }
-    return false
+    return false;
 }
+
+
 
 // 数组去重
 function  toUnique(arr){
@@ -209,7 +220,8 @@ function  toUnique(arr){
         var map = {}
         for(var i = 0 ;i<arr.length;i++){
             if(arr[i] in map){
-                arr.splice(i,1); //会直接对数组进行修改 slice（）不是
+                arr.splice(i,1);// 去掉这一项
+                //会直接对数组进行修改 slice（）不是
                 // slice() 方法可提取字符串的某个部分，并以新的字符串返回被提取的部分。
                 // split() 方法用于把一个字符串分割成字符串数组。
             }else {
@@ -223,7 +235,16 @@ function  toUnique(arr){
 function preLoadImg(url) {
 
     var img = new Image();
-
     img.src = url;
 
 }
+
+//    判断是否支持includes方法 如果支持用新方法，不支持的话还用老办法
+function contain(arr,target){
+    if(Array.prototype.includes){
+        return arr.includes(target)
+    }else{
+        return  arr.some(target)
+    }
+}
+console.log(contain([1,2,3,4],5))

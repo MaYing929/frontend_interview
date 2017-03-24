@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6 数组的扩展方法</title>
+</head>
+<body>
+<script>
+
+
+/*
+ var arrayLike = {
+     1:'23',
+     2:'333',
+     3:'4545'
+ }
+   let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+    console.log('arrayLike',Array.isArray(arrayLike)) //false
+    console.log('arr2',Array.isArray(arr2)) //true
+
+
+ let ps = document.querySelectorAll('p');
+ Array.from(ps).forEach(function (p) {
+     console.log(p);
+ });
+
+ // arguments对象
+ function foo() {
+     var args = Array.from(arguments);
+     // ...
+ }
+
+
+// Iterator就是为了提供一种统一的接口机制。任何的数据结构，只要部署了Iterator接口，便可以使用类似的方式完成遍历操作。
+ console.log(Array.from('hello'))
+ let namesSet = new Set(['a', 'b'])
+ Array.from(namesSet) // ['a', 'b']
+
+ Array.from(arrayLike, x => x * x);
+ // 等同于
+ Array.from(arrayLike).map(x => x * x);
+
+ Array.from([1, 2, 3], (x) => x * x)
+ // [1, 4, 9]
+
+// Array.of方法用于将一组值，转换为数组。
+   console.log('Array.of',Array.of(1,2,3))
+
+//  Array()方法会根据传入的参数不同输出的结果不同,Array()只有参数不小于两个的时候才会返回一个新的数组
+    console.log('Array()',Array()) //[]
+    console.log('Array(3)',Array(3))// [,,]
+    console.log('Array(1,2)',Array(1,2)) //[1,2]
+//Array.of()就是为了解决这个问题的 任何个参数执行的结果都一样
+ console.log('Array.of()',Array.of()) //0
+ console.log('Array.of(3)',Array.of(3))//[3]
+ console.log('Array.of(1,2)',Array.of(1,2)) //[1,2]
+    
+    
+//  实现类似 Array.of 函数的方法
+ function  ArrayOf() {
+     return [].slice().call(arguments)
+ }
+
+/!*数组实例的 copyWithin在数组的内部，将指定位置的成员复制到另外一个位置（会覆盖其他成员），然后返回当前数组，也就是说，使用这个 方法，会修改
+    当前的数组
+ Array.prototype.copyWithin(target,start,end)
+ target（必需）：从该位置开始替换数据。
+ start（可选）：从该位置开始读取数据，默认为0。如果为负值，表示倒数。
+ end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。
+包括开始但不包括结束
+ *!/
+
+var newArr = [1,2,3,4].copyWithin(0,2)
+ console.log('newArr',newArr)
+
+
+ var newArr2 = [1,2,3,4,5].copyWithin(0,2,4) // 3,4,3,4,5
+ console.log('newAr2r',newArr2)
+
+ var newArr2 = [1,2,3,4,5].copyWithin(3,2,4) //  1,2,3,3,4
+ console.log('newAr2r',newArr2)
+
+
+
+/!*
+数组实例的find() 和findindex()
+数组实例的find方法，参数是一个回调函数，数组的每一项执行这个函数，找到第一项返回值为true的成员 ，找不到最后返回undefined
+findIndex 方法返回用法与find类似，只不过是返回第一个出现符合要求的位置而已
+这两个方法都可以接受第二个参数，用来绑定回调函数的this对象。
+*!/
+
+//test
+    console.log([1,2,3,5].find(function(value,index,arr){
+        return value >2
+    }))
+
+   console.log([1,2,3,5].findIndex(function(value,index,arr){
+     return value >2
+ }))
+
+
+   /!*
+   数组实例的fill 给定值填充数组
+   可以接受三个参数
+   填充数，起始位置，结束位置
+   *!/
+
+   console.log(['e','r','e'].fill(7))
+   console.log(new Array(3).fill(2))
+   console.log(['e','r','e','ww','rr','qq'].fill(7,1,5))
+
+
+/!*  ES6数组实例的三个遍历方法
+    entries()对键值对的遍历
+    keys() 对键名的遍历
+    values()对键值的遍历
+     他们都返回一个遍历器对象，都可以使用for of 方法
+
+    *!/
+
+
+ for (let index of ['a', 'b'].keys()) {
+     console.log(index);
+ }
+
+ for (let index of ['a', 'b'].entries()) {
+     console.log(index);
+ }
+
+
+// 如果不使用for...of循环，可以手动调用遍历器对象的next方法，进行遍历。
+
+ let letter = ['a', 'b', 'c'];
+ let entries = letter.entries();
+ console.log(entries.next().value); // [0, 'a']
+ console.log(entries.next().value); // [1, 'b']
+ console.log(entries.next().value); // [2, 'c']
+
+
+    /!*
+    * 数组树立的includes方法
+    *
+    * Array.prototype.includes方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的includes方法类似
+    * 第二个参数是搜索的起始位置
+    * *!/
+    console.log([1,2,3,4].includes(1))
+    console.log([1,2,3,4].includes(1,2))
+
+
+//    m没有该方法之前，我们都是用indexof判断数组中是否存在某个值
+
+    if(arr.indexOf(em) !=-1){
+
+    }
+// indexOf缺点： 不够直观它的含义是找到参数值的第一个出现位置，所以要去比较是否不等于-1，表达起来不够直观，内部使用严格的=== 对NaN判断不准确
+ [NaN].indexOf(NaN)
+ // -1
+  [NaN].includes(NaN)
+ // true
+*/
+
+
+
+
+//    判断是否支持includes方法 如果支持用新方法，不支持的话还用老办法
+/*
+     function contain(arr,target){
+         if(Array.prototype.includes){
+             return arr.includes(target)
+         }else{
+             return  arr.some(target)
+         }
+     }
+
+console.log(contain([1,2,3,4],5))
+*/
+
+//ES5对空位处理不一致
+/*forEach(), filter(), every() 和some()都会跳过空位。
+ map()会跳过空位，但会保留这个值
+ join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。
+
+
+ ES6 明确把空位转为undefined
+ Array.from 把数组的空位转换为undefined
+ */
+console.log(Array.from(['a',,'b']))
+
+</script>
+</body>
+</html>

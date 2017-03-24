@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js继承</title>
+    </head>
+    <body>
+    <script>
+
+        // 定义一个动物类
+        function Animal (name) {
+            // 属性
+            this.name = name || 'Animal';
+            // 实例方法
+            this.sleep = function(){
+                console.log(this.name + '正在睡觉！');
+            }
+        }
+        // 原型方法
+        Animal.prototype.eat = function(food) {
+            console.log(this.name + '正在吃：' + food);
+        };
+
+        Animal.prototype.name = '父类的原型属性name'
+
+
+        //原型链继承---------------------------------------------------------------------------------------------------
+
+        function Cat(name) {
+            this.name = name ||'dd';
+        }
+        Cat.prototype = new Animal();
+        Cat.prototype.name = '子类的原型属性name'
+
+        var cat = new Cat();
+        var animal = new Animal();
+        console.log(cat.name);
+        console.log(cat.sleep());
+//        所有的构造函数都继承自Object 而继承Object是自动完成的 并不需要程序员手动继承
+//        通过继承之后的实例，他们的从属关系会怎么样呢？
+        console.log(Cat instanceof  Object) //true
+        console.log(Animal instanceof  Object)//true
+
+      /*  继承机制：
+        如果子类实例里面有name属性 原型中也有name属性，而且父类实例里面有name属性 原型中也有name属性
+        这时候输出子类.name的输出机制
+        就近原则， 优先级 ： 子类实例的name > 子类原型中的name > 父类实例的name > 父类原型中的name*/
+
+     /* 特点：
+        非常纯粹的继承，实例是子类的实例，也是父类的实例
+        父类新增原型方法、原型属性，子类都能够访问到
+        简单，易于实现
+
+        缺点：
+        来自原型对象的引用属性是所有实例共享的
+        创建子类实例时，无法向父类构造函数传参*/
+
+        //构造继承---------------------------------------------------------------------------------------------------
+
+        function Cat(name) {
+            Animal.call(this)
+            this.name = name || 'cat';
+        }
+      //test code
+        var cat = new Cat();
+        console.log(cat.name)
+        console.log(cat.sleep());
+
+        console.log(cat instanceof Animal); // false
+        console.log(cat instanceof Cat); // true
+
+/*
+优点：
+        解决了子类实例共享父类引用属性的问题
+        可以实现多继承 用多个call函数实现
+        创建子类型的时候可以往父类传递参数
+
+        缺点：
+        实例并不是父类的实例，只是子类的实例
+        只能继承父类的实例属性和方法，不能继承原型属性/方法
+        无法实现函数复用，每个子类都有父类实例函数的副本，影响性能*/
+
+//组合继承
+        function Cat(name){
+            Animal.call(this);
+            this.name = name || 'Tom';
+        }
+        Cat.prototype = new Animal();
+        for( var i in Animal.prototype)
+        {
+            Cat.prototype[i] = Animal.prototype[i]
+        }
+        // Test Code
+        var cat = new Cat();
+        console.log(cat.name);
+        console.log(cat.sleep());
+        console.log(cat instanceof Animal); // true
+        console.log(cat instanceof Cat); // true
+
+
+    </script>
+</body>
+</html>
