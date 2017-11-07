@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>找出数组中重复出现的元素</title>
+</head>
+<body>
+<script>
+
+
+ function  duplicate(arr) {
+
+   var tmp = [];
+//  先排序
+     arr = arr.sort();
+     arr.sort(function(a,b){
+            if(a==b && tmp.indexOf(a) === -1){
+                tmp.push(a);
+            }
+        });
+        return tmp;
+    }
+    var a = [5,4,3,2,1,2,3,2,1,];
+    document.write(duplicate(a))
+
+//    数组去重
+ function  toUnique(arr){
+     if(arr && Array.isArray(arr)){
+         var map = {}
+         for(var i = 0 ;i<arr.length;i++){
+             if(arr[i] in map){
+                 arr.splice(i,1); //会直接对数组进行修改 slice（）不是
+                 // slice() 方法可提取字符串的某个部分，并以新的字符串返回被提取的部分。
+                 // split() 方法用于把一个字符串分割成字符串数组。
+             }else {
+                 map[arr[i]] = true
+             }
+         }
+     }
+     return arr;
+ }
+
+
+
+</script>
+</body>
+</html>

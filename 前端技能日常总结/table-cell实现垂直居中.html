@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>table-cell实现垂直居中</title>
+
+   <!--
+    我们都知道，每个人都有不同的嗜好，有的人喜欢吃甜食，有的人喜欢吃辣的东西，
+    有的人不喜欢吃芹菜，有的人不喜欢吃羊肉等等。CSS中的有些元素也是这样，
+    他们有的只对牛奶感兴趣，有的只喜欢吃坚果和果冻，而讨厌牛奶。而vertical-align呢
+    ，是个比较挑食的家伙，它只喜欢吃果冻，从小吃果冻长大，没有了果冻，它就会闹脾气，对你不理不睬。
+    我称之为“果冻依赖型元素”，又称之为“inline-block依赖型元素”，也就是说,只有一个元素属于inline或是inline-block
+    （table-cell也可以理解为inline-block水平）水平，其身上的vertical-align属性才会起作用。
+    我对css-vertical-align的一些理解与认识
+    -->
+
+
+    <style>
+        .parent{
+            /*实现垂直居中*/
+            display: table-cell;
+            vertical-align: middle;
+            /*---*/
+            width:700px;
+            height:600px;
+            background-color: red;
+
+        }
+        .child{
+            width:300px;
+            height:300px;
+            background-color: palegreen;
+            margin:0 auto;  /*实现水平居中*/
+
+
+
+        }
+    </style>
+</head>
+<body>
+<div class="parent">
+    <div class="child"></div>
+</div>
+</body>
+</html>

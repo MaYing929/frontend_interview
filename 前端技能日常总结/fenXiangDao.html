@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运动基础一</title>
+    <style>
+        *{
+             margin:0;
+             padding:0;
+         }
+       #div1{
+           width:150px;
+           height:200px;
+           background: red;
+           position: relative;
+           left: -150px;
+           top:100px;
+       }
+
+       span{
+           width:20px;
+           height:70px;
+           background: blue;
+           position: absolute;
+           left: 150px;
+           top:30px;
+       }
+
+    </style>
+
+
+
+</head>
+<body>
+<div id="div1">
+    <span>分享到</span>
+</div>
+<script>
+    var odiv1 = document.getElementById('div1');
+    var timer = null;
+    function startMove(iTagget){
+//      先关闭定时器（保证同时段只有一个定时器）
+        clearInterval(timer);
+        timer = setInterval(function(){
+//          缓冲运动 速度由距离决定 速度 = （目标-当前值）／缩放系数
+            var speed = (iTagget - odiv1.offsetLeft)/10;
+            speed = speed > 0?Math.ceil(speed):Math.floor(speed);
+            odiv1.style.left = odiv1.offsetLeft+speed+'px';
+        },30)
+    }
+
+
+
+
+    window.onload=function(){
+
+        odiv1.onmouseover=function(){
+            startMove(0)
+        }
+        odiv1.onmouseout=function(){
+            startMove(-150)
+        }
+    }
+</script>
+</body>
+</html>

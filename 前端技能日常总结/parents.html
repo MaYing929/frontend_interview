@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子节点应用</title>
+</head>
+<body>
+<div id="div1">
+    <ul>
+        <li>撒上的风格<a href="javascript:;">删除</a></li>
+        <li>撒上的风格<a href="javascript:;">删除</a></li>
+        <li>撒上趣味儿童<a href="javascript:;">删除</a></li>
+        <li>大结局大结局<a href="javascript:;">删除</a></li>
+        <li>得到那就发到你房间<a href="javascript:;">删除</a></li>
+
+    </ul>
+</div>
+
+<script>
+    window.onload=function(){
+
+          var odiv = document.getElementById('div1')
+          var oul = odiv.getElementsByTagName('ul')[0];
+          var oa = odiv.getElementsByTagName('a');
+
+//        循环a然后加事件
+        for(var i = 0;i<oa.length;i++){
+            oa[i].onclick=function(){
+//           this.parentNode.remove()
+                this.parentNode.style.display = 'none'
+            }
+        }
+
+    }
+</script>
+</body>
+</html>

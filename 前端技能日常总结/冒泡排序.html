@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>冒泡排序</title>
+</head>
+
+<body>
+    <!--实现原理-->
+
+
+
+    <script>
+        function bubbleSort(arr) {
+            if (len <= 1) { return arr }
+            var len = arr.length;
+            for (var i = 0; i < len; i++) {
+                for (var j = 0; j < len - 1 - i; j++) {
+                    if (arr[j] > arr[j + 1]) {        //相邻元素两两对比
+                        var temp = arr[j + 1];        //元素交换
+                        arr[j + 1] = arr[j];
+                        arr[j] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+
+        bubbleSort(1, 25, 2, 7)
+
+        function addEventListener(obj, type, fn) {
+            if (obj.attachEvent) {
+                //                detachEvent()
+                obj.attachEvent('on' + type, fn)
+            } else {
+                obj.addEventListener(type, fn, false)
+                //                    removeEventListener()
+                //                true - 事件句柄在捕获阶段执行
+                //                false- false- 默认。事件句柄在冒泡阶段执行
+            }
+        }
+
+    </script>
+</body>
+
+</html>

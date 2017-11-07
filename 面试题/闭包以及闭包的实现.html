@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>考闭包</title>
+</head>
+<body>
+<script type="text/javascript" charset="utf-8">
+  /*  var z = 10;
+    function foo(){
+        console.log(z);
+    }
+    (function(funArg){
+        var z = 20;
+        funArg(); //形成闭包
+    })(foo);*/
+
+/*  var z = 10;
+   function foo(){
+   return z;
+   }
+   (function(funArg){
+   var z = 20;
+   var j = funArg; //形成闭包
+   j();
+   console.log('dsd',j())
+   })(foo);*/
+
+/*
+  var data = [];
+  for(var k = 0; k < 3; k++){
+      data[k] = function(){
+          console.log(k);
+      };
+  }
+  data[0](); //3
+  data[1](); //3
+  data[2]();  //3*/
+
+//    改造输出 0,1,2
+
+ /* var data = [];
+  for(var k = 0; k < 3; k++){
+      data[k] = function(){
+          console.log(k);
+      }(k);
+  }*/
+
+/*  function fun(n,o){
+      console.log(o)
+      return{
+          fun:function(m){
+              return fun(m,n);
+          }
+      };
+  }
+ var a = fun(0); a.fun(1); a.fun(2); a.fun(3);*/
+//  var b = fun(0).fun(1).fun(2).fun(3);
+//  var c = fun(0).fun(1); c.fun(2); c.fun(3);
+//    var a = fun(0);
+//    console.log('a',a)
+//    console.log('a.fun',a.fun);
+//    console.log('a.fun()',a.fun());
+//    console.log('a.fun(1)',a.fun(1));
+//    console.log('a.fun().fun',a.fun().fun);
+//    console.log('a.fun().fun()',a.fun().fun());
+//    console.log('a.fun().fun().fun',a.fun().fun().fun);
+
+
+/*  --????
+  var test = (function(a){
+      this.a = a;
+      return function(b){
+          return this.a + b;
+      }
+  }(function(a,b){
+      return a;
+  }(1,2))
+  );
+  console.log('test',test(1));*/
+
+
+/*  (function(){
+      var a = b = 3;
+        // var a;  b=3;  a=b;
+
+
+  })();
+  console.log("a defined?" + (typeof a != 'undefined')); //  a 局部变量   false
+  console.log("b defined?" + (typeof b != 'undefined')); //  b   是全局变量 true*/
+
+
+/*
+
+  var myObject = {
+      foo: "bar",
+      func: function(){
+          var self = this;
+          console.log('outer func : this' +'----'+ this); //bar
+          console.log('outer func : self' +'----'+ self); //bar
+          console.log('outer func : this.foo' +'----'+ this.foo); //bar
+          console.log('outer func : self.foo' +'----'+ self.foo); //bar
+          (function(){
+              console.log('inner func : this' +'----'+ this);//window
+              console.log('inner func : self' +'----'+ self);//object
+              console.log('inner func : this.foo' +'----'+ this.foo);//undefined
+              console.log('inner func : self.foo' +'----'+self.foo);//bar
+          })();
+      }
+  };
+
+
+
+  myObject.func();*/
+
+
+/*  (function(){
+   console.log(1);
+   setTimeout(function(){console.log(2)},1000);
+   setTimeout(function(){console.log(3)},0);
+   console.log(4);
+   })(); //输出 1，4，3，2*/
+
+
+/* ？？？
+  var len = 4;
+  while(len--){
+      setTimeout(function(){console.log(len)},3000);
+      console.log(len);
+  }*/
+
+/*  for(var i = 0,j = 0; i < 10, j < 6; i++, j++){
+      value = i + j;
+  }
+  alert(value);  // 10*/
+/*    每次的输出i和j
+  0 0
+  1 1
+  2 2
+  3 3
+  4 4
+  5 5*/
+
+/*
+????错题？？
+var handle = function(a){
+      var b = 3;
+      var tmp = function(a){
+          b = a + b;
+          return tmp;
+      }
+      tmp.toString() = function(){
+          return b;
+      }
+      return tmp;
+  }
+  alert(handle(4)(5)(6));*/
+
+
+/*
+???
+var test = (function(a){
+    this.a = a;
+    return function (b) {
+        console.log(b+'mm')
+        return this.a +b;
+    }
+}(function (a, b) {
+            return a;
+        }(1,2))
+
+)
+
+    console.log(test(1))*/
+
+function Sdd() {
+     console.log('ss')
+}
+var  b = new Sdd();
+Sdd.prototype.focuee = function () {
+    console.log('我是新增方法')
+}
+  console.log('b.__proto__',b.__proto__ == Sdd.prototype)    //true
+  console.log('b.constructor',b.constructor)  //Sdd
+  console.log('b.focuee()',b.focuee()) //我是新增方法
+  console.log('Sdd.prototype.constructor',Sdd.prototype.constructor == b.constructor) //true
+
+</script>
+</body>
+</html>

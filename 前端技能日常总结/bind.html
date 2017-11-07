@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定事件</title>
+    <script>
+
+        function myAddEvent(obj,ev,fn) {
+            if(obj.attachEvent){
+                obj.attachEvent('on'+ ev ,fn)
+//                detachEvent() 移除
+            }else{
+                obj.addEventListener(ev,fn,false)
+//                removeEventListener() 移除事件
+            }
+        }
+        window.onload=function () {
+            var obtn = document.getElementById('btn1');
+            myAddEvent(obtn,'click',function () {
+                alert('用函数实现绑定操作')
+            })
+        }
+    </script>
+</head>
+<body>
+<input type="button" id="btn1" value="绑定事件"/>
+</body>
+</html>

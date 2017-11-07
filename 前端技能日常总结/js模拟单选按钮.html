@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style media="screen">
+  <span style="font-family: Arial, Helvetica, sans-serif; background-color: rgb(255, 255, 255);">
+  </span>
+
+  <pre name="code" class="css">
+  * {
+      margin:0;
+      padding:0;
+    }
+
+h4 {
+margin-top:20px;
+}
+
+body {
+margin-left:30px;
+}
+
+.fn-hide {
+display:none;
+}
+
+.radio-box, .check-box {
+display:block;
+margin:10px;
+cursor: pointer;
+}
+
+.radio-box label {
+float:left;
+width:12px;
+height:12px;
+margin:2px 5px 2px 8px;
+border:#0e5 2px solid;
+border-radius:50%;
+cursor: pointer;
+/* 用背景替代边框 */
+}
+
+.check-box label {
+float:left;
+width:10px;
+height:10px;
+margin:2px 6px 2px 9px;
+border:#000 2px solid;
+cursor: pointer;
+}
+
+.radio-cur label, .check-cur label {
+border:#f00 2px solid;
+}
+  </style>
+</head>
+<body>
+
+  <h4>1.请选择您的性别</h4>
+  <div class="radio-box radio-cur" name="sex">
+    <label></label>
+    <span>男</span>
+    <input type="radio" name="sex" class="fn-hide" />
+  </div>
+
+  <div class="radio-box" name="sex">
+    <label></label>
+    <span>女</span>
+    <input type="radio" name="sex" class="fn-hide" />
+  </div>
+
+  <div class="radio-box" name="sex">
+    <label></label>
+    <span>不男不女？</span>
+    <input type="radio" name="sex" class="fn-hide" />
+  </div>
+
+  <!-- <h4>2.请选择您喜欢的球星</h4>
+  <div class="check-box check-cur">
+    <label></label>
+    <span>科比</span>
+    <input type="checkbox" name="" class="fn-hide" checked />
+  </div>
+
+  <div class="check-box">
+    <label></label>
+    <span>韦德</span>
+    <input type="checkbox" name="" class="fn-hide" />
+  </div>
+
+  <div class="check-box">
+    <label></label>
+    <span>维斯布鲁克</span>
+    <input type="checkbox" name="" class="fn-hide" />
+  </div>
+
+  <div class="check-box">
+    <label></label>
+    <span>库里</span>
+    <input type="checkbox" name="" class="fn-hide" />
+  </div>
+
+  <div class="check-box">
+    <label></label>
+    <span>杜兰特</span>
+    <input type="checkbox" name="" class="fn-hide" />
+  </div>
+
+  <div class="check-box">
+    <label></label>
+    <span>安东尼</span>
+    <input type="checkbox" name="" class="fn-hide" />
+  </div> -->
+
+  <script type="text/javascript">
+
+  /*
+注：name属性值相同的元素只能一个被选中；
+
+*/
+
+$(function(){
+//   通过click事件来模拟单选按钮
+  $(document).on("click", ".radio-box", function(){
+
+//     获取单选按钮的name属性值;
+    var objName = $(this).attr("name");
+
+//  删除被选中元素和高亮样式radio-cur;
+    $(".radio-box[name='"+objName+"']").removeClass("radio-cur");
+
+//  为点击的元素添加高亮样式;
+    $(this).addClass("radio-cur").find("input[type='radio']").prop("checked", true);
+
+
+  });
+
+// //   通过click事件来模拟多选按钮;
+//   $(document).on("click", ".check-box", function(){
+//
+// //     判断该元素被选中与否并返回与之对应的样式;
+//     return $(this).hasClass("check-cur") ?
+//
+//       $(this).removeClass("check-cur").find("input[type='checkbox']").prop("checked",false) :
+//
+//       $(this).addClass("check-cur").find("input[type='checkbox']").prop("checked",true);
+//
+//   });
+});
+
+  </script>
+</body>
+</html>
