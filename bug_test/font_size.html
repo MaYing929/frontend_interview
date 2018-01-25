@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 50px;">
+<head>
+    <meta charset="UTF-8">
+    <title> font-size: 0;解决inline元素间的空白间隙</title>
+    <style>
+        *{padding:0;margin: 0}
+
+        .business-box{
+            padding:31px 0;
+            display: flex;
+            background: #fff;
+            margin-bottom: 20px;
+        }
+
+        .img-box{
+            text-align: center;
+            flex: 1;
+            font-size: 0;
+        }
+
+        .img-box-img{
+            width:88px;
+            height:88px;
+            margin-bottom: 21px;
+        }
+        .img-box-text{
+            display: block;
+            font-size: 26px;
+            line-height: 1.0;
+            color: #333333;
+        }
+    </style>
+    <!--一些说明
+    通常我们为了页面代码的整洁美观 会设置一些缩进换行,
+    但当元素的display为inline或者是inline-block时 这些缩进或者换行就会产生空包
+    会被认为是文本节点
+    消除图片的间隙也是同样的原理
+    -->
+
+
+</head>
+<body>
+<div class="business-box">
+        <a class="img-box">
+            <img class="img-box-img" src="http://s1.xinstatic.com/static/newcar-m/widget/home/business-link/img/maisanche_8b4fb59.png" alt="">
+            <span class="img-box-text">买车</span>
+        </a>
+        <a class="img-box">
+            <img class="img-box-img" src="http://s1.xinstatic.com/static/newcar-m/widget/home/business-link/img/maisanche_8b4fb59.png" alt="">
+            <span class="img-box-text">买车</span>
+        </a>
+        <a class="img-box">
+            <img class="img-box-img" src="http://s1.xinstatic.com/static/newcar-m/widget/home/business-link/img/maisanche_8b4fb59.png" alt="">
+            <span class="img-box-text">买车</span>
+        </a>
+        <a class="img-box">
+            <img class="img-box-img" src="http://s1.xinstatic.com/static/newcar-m/widget/home/business-link/img/maisanche_8b4fb59.png" alt="">
+            <span class="img-box-text">买车</span>
+        </a>
+</div>
+
+
+    <script>
+//        var child = document.getElementById('oul').childNodes;
+//        console.log('child',child)
+    </script>
+</body>
+</html>

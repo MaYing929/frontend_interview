@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ios不能正常冒泡的问题</title>
+
+    <style>
+        div,button,span {
+            display: block;
+            width:200px;
+            height:200px;
+            background: #505050;
+            color: #fff;
+            line-height:50px;
+            font-size:30px;
+            /*cursor: pointer;*/
+            margin: 20px;
+
+        }
+
+        .sp {
+            overflow: hidden;
+        }
+    </style>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+    <div  id="div">点击我111</div>
+    <button  >点击我222</button>
+     <span  >点击我333</span>
+
+
+<script>
+//    var div = document.getElementById('div');
+
+$('body').on('click','div',function(){
+    alert('111')
+})
+$('body').on('click','button',function(){
+    alert('222')
+})
+//$('.sp').on('click','div',function(){
+//    alert('333')
+//})
+</script>
+</body>
+</html>

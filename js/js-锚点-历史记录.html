@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script>
+        function b(obj){
+            location.replace(obj.href);
+        }
+    </script>
+</head>
+<body>
+<div id='test1' >第一个锚点</div>
+<a href='#test1' onclick='b(this);'>a</a>
+<a href='#test2' onclick='b(this);'>b</a>
+<a href='#test3' onclick='b(this);'>c</a>
+<a href='#test4' onclick='b(this);'>d</a>
+<a href='#test5' onclick='b(this);'>e</a>
+<a href='#test6' onclick='b(this);'>f</a>
+<div id='test2' style='margin-top:1000px;'><span>第一个锚点</span></div>
+<div id='test3' style='margin-top:2000px;'><span>第二个锚点</span></div>
+
+<div id='test4' style='margin-top:3000px;'><span>第三个锚点</span></div>
+
+<div id='test5' style='margin-top:4000px;'><span>第四个锚点</span></div>
+
+<div id='test6' style='margin-top:5000px;'><span>第五个锚点</span></div>
+
+<body>
+</html>

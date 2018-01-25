@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>理解CSS布局和BFC</title>
+</head>
+<style>
+    .outer {
+        border: 5px dotted rgb(214,129,137);
+        border-radius: 5px;
+        width: 450px;
+        padding: 10px;
+        margin-bottom: 40px;
+    }
+
+    .float{
+        padding:10px;
+        border:5px solid ragb(216,23,56,.5);
+        border-radius: 5px;
+        background-color: #f44975;
+        color: #fff;
+        float: left;
+        width:200px;
+        margin:0 20px 0 0 ;
+    }
+
+    .BFCouter{
+        width:200px;
+        background: #ccc;
+        margin-bottom: 40px;
+        /*display: table-caption;*/
+        /*display:inline-block;*/
+        /*display:table-cell;*/
+        diaplay：flow-root;
+    }
+    
+    p{
+        padding:0;
+        margin:20px 0;
+        background-color: bisque;
+        color:#fff;
+    }
+</style>
+<body>
+
+<!--什么是BFC？-->
+<!--格式化上下文-->
+<!--可以看作是页面的一个迷你布局 一旦元素创建了一个BFC 他其中的元素都会被他包裹-->
+<!--当盒子变成BFC之后它内部的浮动元素就再也不可能突破它的底部 也就是说 盒子不会因为浮动而塌陷-->
+
+<!--BFC可以阻挡外边距叠加-->
+<!--一个BFC会停止去围绕浮动元素-->
+
+
+<!--创建一个BFC的常用方式-->
+
+<!--使用position:absolute 或者 position:fixed-->
+<!--使用display:inline-block display:table-cell 或者 display:table-caption-->
+<!--新方式： diaplay：flow-root-->
+
+<!--解决方式一-->
+<!--clearfix 黑魔法-->
+<!--在浮动元素下面插入一个元素 比如div 并将clear的属性值设置为both-->
+
+<!--解决方式二-->
+<!--父元素的 overflow：hidden 当它的值为visible时候会创建一个BFC BFC的一个特性就是包裹浮动元素v
+-->
+
+<!--解决方式三-->
+<!--使用css的伪元素 :after 或者伪类:after-->
+
+
+<div class="outer">
+    <div class="float">我是浮动元素</div>
+    我是文本
+</div>
+
+<div class="BFCouter">
+    <p>BFC外边距会叠加BFC外边距会叠加BFC外边距会叠加</p>
+</div>
+
+<!--没有出现灰色背景的原因是因为父元素没有高度 元素从里面跑出来了
+
+margin叠加 不是很能理解这个概念 创建BFC后 外边距不在叠加
+
+一旦BFC创建，它就会阻止它内部的元素逃离并从盒子里伸出来。
+
+为什么不使用overflow 容易造成歧义 不太能理解
+-->
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="wap-font-scale" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <!--此处为简单的适配，不影响-->
+    <script type="text/javascript" charset="utf-8">
+        ! function() {
+            setRem();
+            window.addEventListener('orientation' in window ? "deviceorientation" : "resize", setRem);
+            function setRem() {
+                var html = document.documentElement;
+                var width = html.clientWidth;
+                html.style.fontSize = width / 16 + 'px'
+            }
+        }();
+    </script>
+    <title>解决line-height问题</title>
+    <!--可能导致问题的原因
+     字数大爱小不要使用奇数字号
+     使用rem单位时候造成的（根元素如果动态改变的话 根元素字体可能不是整数
+     1.把字号内外边距等设置为需求大小的2倍，使用transform进行缩放。只能针对 单个或者是一排的布局进行缩放，如果是父级自适应高度且可展示多行的，使用transform是有问题的。因为transform缩放是不影响页面布局的。
+     2.把字号内外边距等设置为需求大小的2倍，使用zoom进行缩放，可以完美解决。
+     3.把line-height设置为0，使用padding值把元素撑开，说是可以完美解决（经过测试，没有用的！）。
+
+
+    -->
+    <style type="text/css">
+        .bindBtn {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+            width: 3rem;
+            height: 1.5rem;
+            font-size: .75rem;
+            text-align: center;
+            color: #fff;
+            border-radius: 0.75rem;
+            background-color: #f44975;
+            text-decoration: none;
+        }
+        .buyBtn {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+            width: 3rem;
+            height: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 0.6rem;
+            color: #fff;
+            background: #666;
+        }
+        .float_left {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<a class="bindBtn" href="javascript:;">已邀请</a>
+<!--浮动的情况 -->
+<a class="float_left" style="text-decoration: none;margin-top: 0.5rem;" href="javascript:;">
+    <span class="buyBtn">购买</span>
+</a>
+</body>
+</html>

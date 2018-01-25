@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        height:2000px;
+    }
+    .nav-box{
+        padding:0 15px;
+        background-color: yellow;
+        white-space: nowrap;
+        overflow-x:scroll;
+        overflow-y:hidden;
+        height: 88px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-box::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-box-item{
+        position: relative;
+        text-align: center;
+        color: #333333;
+        font-size: 30px;
+        display:inline-block;
+        box-sizing: border-box;
+        height: 88px;
+        line-height: 88px;
+        margin: 0 25px;
+
+    }
+
+    .nav-box-item-text{
+        display: inline-block;
+        border-bottom: 2px solid red;
+        box-sizing: border-box;
+        height: inherit;
+    }
+
+    input{
+        width:300px;
+    }
+</style>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>>
+<body>
+<div>
+    <span id="apan">你点我啊 你点我啊</span>
+    <ul class="nav-box">
+        <li class="nav-box-item"><span class="nav-box-item-text">车况视频</span></li>
+        <li class="nav-box-item"><span class="nav-box-item-text">事故排查</span></li>
+        <li class="nav-box-item"><span class="nav-box-item-text">轻微碰撞</span></li>
+        <li class="nav-box-item"><span class="nav-box-item-text">易损耗部件</span></li>
+        <li class="nav-box-item"><span class="nav-box-item-text">常用功能</span></li>
+        <li class="nav-box-item"><span class="nav-box-item-text">启动检测</span></li>
+        <li class="nav-box-item"><span class="nav-box-item-text">外观内饰</span></li>
+        <li class="nav-box-item"><span class="nav-box-item-text">瑕疵及修复</span></li>
+    </ul>
+</div>
+
+
+<script>
+    $(window).scroll(function() {
+       alert('点击触发了页面scroll事件')
+    });
+
+    document.getElementById('apan').onclick=function(){
+        console.log('wsedrt')
+    }
+</script>
+
+
+</body>
+</html>

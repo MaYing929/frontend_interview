@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>setTimeout</title>
+    <script type="text/javascript">
+
+        function get(id) {
+            return document.getElementById(id);
+        }
+        window.onload = function () {
+            var makeBtn = get('makeinput');
+
+            get('makeinput').onmousedown = function (e) {
+                console.log(e.type)
+                var input = document.createElement('input');
+                input.setAttribute('type', 'text');
+                input.setAttribute('value', 'test1');
+                get('inpwrapper').appendChild(input);
+
+                input.onfocus = function () {
+                    console.info('input focus');
+                };
+//
+                input.focus();
+                input.select();
+
+//                setTimeout(function(){
+//                    input.focus();
+//                    input.select();
+//                },0)
+            }
+
+            makeBtn.onfocus = function () {//观察我们生成按钮什么时候获取焦点的
+                console.log('makeBtn focus');
+            }
+
+            makeBtn.onclick = function (e) {
+                console.log(e.type);
+            };
+            makeBtn.onmouseup = function (e) {
+                console.log(e.type);
+            };
+
+            //第三个例子，onkeypress输入的时候少了一个值
+//            get('input').onkeypress = function () {
+//                var that = this;
+//                setTimeout(function(){
+//                    get('preview').innerHTML = that.value;
+//                },0)
+//
+//            }
+        }
+
+//        mousedown - 鼠标按钮按下
+//        mouseup - 鼠标按钮释放
+//        click - 完成单击
+//        触发顺序
+//        onkeydown => onkeypress => onkeyup
+//        添加了setTimeout之后
+//        onkeydown => onkeypress =>function=> onkeyup
+    </script>
+</head>
+<body>
+<h1><code>setTimeout</code></h1>
+<h2>1、未使用 <code>setTimeout</code></h2>
+<button id="makeinput">生成 input</button>
+<p id="inpwrapper"></p>
+
+<!--<h2>3、另一个例子</h2>-->
+<!--<p>-->
+    <!--<input type="text" id="input" value="" /><span id="preview"></span>-->
+<!--</p>-->
+</body>
+</html>

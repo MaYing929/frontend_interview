@@ -1,0 +1,35 @@
+.nav-box{
+    padding:0 .15rem;
+    background-color: yellow;
+    white-space: nowrap;
+    overflow-x:scroll;
+    overflow-y:hidden;
+    height: .88rem;
+    /*-webkit-overflow-scrolling: touch;*/
+}
+
+.nav-box::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-box-item{
+    position: relative;
+    text-align: center;
+    color: #333333;
+    font-size: .3rem;
+    display:inline-block;
+    height:.42rem;
+    line-height: .42rem;
+    box-sizing: border-box;
+    height: .88rem;
+    line-height: .88rem;
+    margin: 0 .25rem;
+
+}
+
+.nav-box-item-text{
+    display: inline-block;
+    border-bottom: 2px solid red;
+    box-sizing: border-box;
+    height: inherit;
+}

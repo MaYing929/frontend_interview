@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试不能输入汉字</title>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style>
+        input{
+            width:200px;
+            height:100px;
+            background: grey;
+        }
+    </style>
+</head>
+<body>
+<input  id="SUGGEST_KEYWORD" type="text" placeholder="测试ios下的bug">
+</body>
+<script>
+    let lastValue = '';
+    $('#SUGGEST_KEYWORD').on('input propertychange', function() {
+        if ($('#SUGGEST_KEYWORD').val() === '' && lastValue !== '') {
+            alert($('#SUGGEST_KEYWORD').val())
+            setTimeout(function(){
+                if ($('#SUGGEST_KEYWORD').val() === '') {
+                    $('#SUGGEST_KEYWORD').val('')
+                }
+            },0)
+            $('#SUGGEST_KEYWORD').val('')
+        }
+        let keyword = $.trim($('#SUGGEST_KEYWORD').val());
+        lastValue = keyword;
+    });
+</script>
+</html>
