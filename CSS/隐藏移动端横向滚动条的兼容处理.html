@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>移动端横向滚动条的兼容处理</title>
+    <style>
+
+        *{
+            padding:0;
+            margin: 0;
+        }
+
+        ul li {
+            list-style: none;
+        }
+        .box-nav {
+             height:100px;
+             overflow: hidden;
+             line-height:100px;
+             background: #f44975;
+        }
+        .nav-box-item{
+            text-align: center;
+            font-size: 0;
+            display:inline-block;
+            box-sizing: border-box;
+            margin: 0 25px;
+        }
+
+        .nav-box {
+            overflow-x: auto;
+            overflow-y: hidden;
+            height: 100px;
+            white-space: nowrap;
+        }
+        .nav-box::-webkit-scrollbar { display: none }
+        .nav-box-item-text{
+            display: inline-block;
+            box-sizing: border-box;
+            height: inherit;
+            color:#fff;
+            font-size: 30px;
+        }
+        .active{
+            border-bottom: 2px solid #fff;
+            color: #000;
+        }
+
+    </style>
+
+    <!--使用overflow-x方法-->
+    <!--当然，同样使用overflow方法来解决，但是需要一点小技巧。思路如下。-->
+
+    <!--父元素设置overflow:hidden属性，可以设置高度，也可以不设置高度，具体还是要看具体实现的场景。这里需要明白的一点是，在没有overflow: hidden属性下，当子元素的高度超过父元素的高度时，父元素的高度会被子元素撑高；在设置了overflow: hidden属性的情况下，当子元素的高度超过父元素的高度时，超过的部分会被剪裁掉。如果有不理解的,就再多读几次..因为此方法就是利用这个原理-->
+    <!--子元素设置高度，并且高度要大于父元素的高度。同时设置overflow-x: auto; white-space: nowrap;也就是说，需要设置三个属性：-->
+    <!--height: 110%  (大于父元素的高度，百分比是基于父元素的高度设置的)-->
+    <!--overflow-x: auto (横线滑动的广告)-->
+    <!--white-space: nowrap;  (不换行)-->
+    <!--上面我们说到，父元素设置的overflow属性会把超过的部分剪裁掉。而在子元素中，由于实际内容的宽度是大于移动设备的宽度的，因此此时必须产生横向滚动条。由于子元素的高度大于父元素的高度，超过父元素的高度的内容被剪裁。因此，子元素的滚动条就被剪裁掉了。同时也不会影响其他内容的显示。IE9及以上的浏览器都支持。-->
+    <!---->
+</head>
+<body>
+
+<div class="box-nav">
+    <ul class="nav-box">
+        <li class="nav-box-item"><a href="javascript:;" class="nav-box-item-text active" >车况视频</a></li>
+        <li class="nav-box-item"><a href="javascript:;" class="nav-box-item-text" >易损耗部件</a></li>
+        <li class="nav-box-item"><a href="javascript:;" class="nav-box-item-text" >事故排查</a></li>
+        <li class="nav-box-item"><a href="javascript:;" class="nav-box-item-text" >启动检测</a></li>
+        <li class="nav-box-item"><a href="javascript:;" class="nav-box-item-text" >瑕疵与修复</a></li>
+        <li class="nav-box-item"><a href="javascript:;" class="nav-box-item-text" >外观内饰</a></li>
+        <li class="nav-box-item"><a href="javascript:;" class="nav-box-item-text" >内部配置</a></li>
+        <li class="nav-box-item"><a href="javascript:;" class="nav-box-item-text" >灯光系统</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
