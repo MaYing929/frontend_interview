@@ -31,7 +31,8 @@
             color: #333333;
         }
     </style>
-    <!--一些说明
+    <!--
+    一些说明
     通常我们为了页面代码的整洁美观 会设置一些缩进换行,
     但当元素的display为inline或者是inline-block时 这些缩进或者换行就会产生空包
     会被认为是文本节点
@@ -64,6 +65,43 @@
     <script>
 //        var child = document.getElementById('oul').childNodes;
 //        console.log('child',child)
+
+
+
+//        function a (xx) {
+//            this.x =xx;
+//            return this;
+//        }
+//
+//        var x = a(5);
+//        var y = a(6);
+//
+//        console.log('x.x',x.x)
+//        console.log('y.x',y.x);
+
+//
+//class Foo {
+//    print = () => {
+//        console.log(this.x);
+//    }
+//
+//    constructor() {
+//        this.x = 1;
+//    }
+//}
+//
+//let foo = new Foo();
+//foo.print.call({x: 2});
+
+function printThis() {
+    let print = () => console.log(this);
+
+    print();
+}
+
+printThis.call([1]);
+printThis.call([2]);
+
     </script>
 </body>
 </html>
